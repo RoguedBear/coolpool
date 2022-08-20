@@ -53,7 +53,9 @@ export default {
 ul {
   list-style: none;
 }
-
+ul > li {
+  flex: 1 1 0;
+}
 .border {
   border-radius: 4rem;
   border-color: purple;
