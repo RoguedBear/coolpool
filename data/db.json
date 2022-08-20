@@ -1,0 +1,11 @@
+{
+    "cards": {
+        "res": [
+            {
+                "startTime": "2022-08-20 12:00:00",
+                "endTime": "2022-08-20 14:30:00",
+                "body": "{\"foodItems\":\"[{\\\"name\\\":\\\"Arbi Masala Soya Korma Rajma Sambher  Jeera Rice Roti Sirka Onion Dahi\\\",\\\"type\\\":\\\"veg\\\"}]\",\"codeUsed\":false,\"codeExpired\":true,\"multipleMealsAllowed\":false,\"mealAvailedCount\":0}",
+            }
+        ]
+    }
+}
