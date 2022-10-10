@@ -1,5 +1,7 @@
 // TODO: implement normal login first, then cahce it or do whatever i want to
 
+import { issueLogout } from "./props";
+
 function isEmail(email) {
   /*eslint no-useless-escape: "error"*/
   const email_re = "[^@ \t\r\n]+@[^@ \t\r\n]+.[^@ \t\r\n]+";
@@ -29,14 +31,21 @@ export async function fetchAPI(endpoint) {
     mode: "cors",
   });
   if (!response.ok) {
-    console.error("error?");
+    console.error("error? " + response.status);
+    if (response.status === 401) {
+      console.warn("status code 401, token expired or something");
+      issueLogout();
+    }
+    if (500 <= response.status) {
+      throw { error: response.status };
+    }
   }
 
   return await response.json();
 }
 
 export async function login(username, password) {
-  let email = isEmail(username);
+  let email = isEmail(username)?.[0];
   let registrationId = email ? null : username;
   let response = await fetch(
     `${process.env.VUE_APP_SCHEME}://${process.env.VUE_APP_API_URL}${process.env.VUE_APP_AUTH_ENDPOINT}`,
