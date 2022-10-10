@@ -1,42 +1,33 @@
 <template>
-  <div v-if="menu !== null">
-    <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">
-      <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
-    </div>
+  <div v-if="show_login">
+    <LoginScreen />
   </div>
-  <div v-else><h2>Loading...</h2></div>
+  <div v-if="show_messcodes">
+    <MessCodeScreen />
+  </div>
 </template>
 
 <script>
-import MenuItem from "./components/MenuItem.vue";
-
-import { fetchAPI } from "./api-methods.js";
+import LoginScreen from "./components/LoginScreen.vue";
+import MessCodeScreen from "@/components/MessCodeScreen.vue";
+import { isLoggedIn, issueLogout } from "@/props";
 
 export default {
   name: "App",
-  components: { MenuItem },
+  components: { LoginScreen, MessCodeScreen },
   data() {
     return {
-      menu: null,
+      show_login: false,
+      show_messcodes: false,
     };
   },
   mounted() {
-    this.parseMenu();
-  },
-  methods: {
-    parseMenu() {
-      fetchAPI(process.env.VUE_APP_MESS_ENDPOINT).then((data) => {
-        this.menu = data.res;
-      });
-    },
-  },
-  computed: {
-    sortedMenuByTime: function () {
-      let copy = this.menu;
-      return copy.sort(function (a, b) {
-        return new Date(a.startTime) - new Date(b.startTime);
-      });
-    },
+    if (isLoggedIn()) {
+      this.show_messcodes = true;
+    } else {
+      this.show_login = true;
+      issueLogout();
+    }
   },
 };
 </script>
