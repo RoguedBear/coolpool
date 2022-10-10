@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     sortedMenuByTime: function () {
-      let copy = this.menu;
+      let copy = this.menu.filter((item) => item.type === "messSchedule");
       return copy.sort(function (a, b) {
         return new Date(a.startTime) - new Date(b.startTime);
       });
