@@ -1,4 +1,5 @@
 <template>
+  <div v-if="err">{{ err }}</div>
   <div v-if="menu !== null">
     <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">
       <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
@@ -18,6 +19,7 @@ export default {
   data() {
     return {
       menu: null,
+      err: null,
     };
   },
   mounted() {
@@ -25,9 +27,19 @@ export default {
   },
   methods: {
     parseMenu() {
-      fetchAPI(process.env.VUE_APP_MESS_ENDPOINT).then((data) => {
-        this.menu = data.res;
-      });
+      fetchAPI(process.env.VUE_APP_MESS_ENDPOINT)
+        .then((data) => {
+          this.menu = data.res;
+        })
+        .catch((e) => {
+          if (typeof e == "object") {
+            // TODO: make a error message component
+            this.err =
+              "This wasnt supposed to happen, server returned " +
+              JSON.stringify(e);
+          }
+          console.error("emror" + e);
+        });
     },
   },
   computed: {
