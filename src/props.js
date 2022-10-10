@@ -2,16 +2,16 @@ import { parseJwt } from "@/utilities";
 
 /**
  *
- * @param {*} data the variable to store the boolean flag to
+ * @param {function} data callback
  * @returns
  */
 // eslint-disable-next-line
-export function subscribeToLoggedIn(data) {
+export function subscribeToLoggedIn(callback) {
   let f = (e) => {
     console.log(e);
-    data.loggedIn = e.detail.loggedIn;
+    callback(e.detail);
   };
-  window.addEventListener("cool-pool-user-login-change", f.bind(data));
+  window.addEventListener("cool-pool-user-login-change", f.bind(callback));
 }
 
 export function issueLogout() {
@@ -24,6 +24,7 @@ export function issueLogout() {
   );
   localStorage.removeItem("logged_in");
   localStorage.removeItem("token");
+  console.log("logout issued");
 }
 
 export function issueLogin(token) {
@@ -36,6 +37,7 @@ export function issueLogin(token) {
       },
     })
   );
+  console.log("login issued");
 }
 
 export function isLoggedIn() {
