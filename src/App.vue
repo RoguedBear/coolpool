@@ -9,16 +9,18 @@
   <h2>meh {{ LOGIN }}</h2>
 
   <span @click="logout()">LOGOUT</span>
+  <UpdateHandler />
 </template>
 
 <script>
 import LoginScreen from "./components/LoginScreen.vue";
 import MessCodeScreen from "@/components/MessCodeScreen.vue";
+import UpdateHandler from "@/components/UpdateHandler.vue";
 import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
 
 export default {
   name: "App",
-  components: { LoginScreen, MessCodeScreen },
+  components: { LoginScreen, MessCodeScreen, UpdateHandler },
   data() {
     return {
       show_login: false,
