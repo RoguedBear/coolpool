@@ -6,6 +6,9 @@
     </div>
   </div>
   <div v-else><h2>Loading...</h2></div>
+    <span v-if="usingCache"
+      >from {{ Date(cacheTimestamp).toLocaleString().split("GMT")[0] }}</span
+    >
 </template>
 
 <script>
@@ -20,6 +23,8 @@ export default {
     return {
       menu: null,
       err: null,
+      usingCache: false,
+      cacheTimestamp: null,
     };
   },
   mounted() {
@@ -27,9 +32,23 @@ export default {
   },
   methods: {
     parseMenu() {
+      try {
+        // first use cache
+        if (localStorage.getItem("_mess_cache")) {
+          let json = JSON.parse(localStorage.getItem("_mess_cache"));
+          this.usingCache = true;
+          this.cacheTimestamp = json.timestamp;
+          this.menu = json.res;
+        }
+      } catch (error) {
+        console.warn(error);
+      }
+
       fetchAPI(process.env.VUE_APP_MESS_ENDPOINT)
         .then((data) => {
+          console.info(data);
           this.menu = data.res;
+          this.usingCache = false;
         })
         .catch((e) => {
           if (typeof e == "object") {
