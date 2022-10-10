@@ -1,14 +1,20 @@
 <template>
   <div v-if="err">{{ err }}</div>
-  <div v-if="menu !== null">
+  <div v-if="!menuEmpty">
     <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">
       <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
     </div>
   </div>
+  <div v-else-if="menuEmpty">
+    Menu doesn't seem to contain anything right now :/
+  </div>
   <div v-else><h2>Loading...</h2></div>
+  <footer v-if="!menuEmpty">
+    Using cache: {{ usingCache }}
     <span v-if="usingCache"
       >from {{ Date(cacheTimestamp).toLocaleString().split("GMT")[0] }}</span
     >
+  </footer>
 </template>
 
 <script>
@@ -67,6 +73,9 @@ export default {
       return copy.sort(function (a, b) {
         return new Date(a.startTime) - new Date(b.startTime);
       });
+    },
+    menuEmpty: function () {
+      return this.menu?.filter((item) => item.type === "messSchedule") == null;
     },
   },
 };
