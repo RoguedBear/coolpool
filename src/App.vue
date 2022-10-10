@@ -5,12 +5,16 @@
   <div v-if="show_messcodes">
     <MessCodeScreen />
   </div>
+
+  <h2>meh {{ LOGIN }}</h2>
+
+  <span @click="logout()">LOGOUT</span>
 </template>
 
 <script>
 import LoginScreen from "./components/LoginScreen.vue";
 import MessCodeScreen from "@/components/MessCodeScreen.vue";
-import { isLoggedIn, issueLogout } from "@/props";
+import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
 
 export default {
   name: "App",
@@ -19,7 +23,13 @@ export default {
     return {
       show_login: false,
       show_messcodes: false,
+      LOGIN: null,
     };
+  },
+  methods: {
+    logout() {
+      issueLogout();
+    },
   },
   mounted() {
     if (isLoggedIn()) {
@@ -28,6 +38,15 @@ export default {
       this.show_login = true;
       issueLogout();
     }
+    subscribeToLoggedIn((e) => {
+      if (e.loggedIn === true) {
+        this.show_login = false;
+        this.show_messcodes = true;
+      } else {
+        this.show_login = true;
+        this.show_messcodes = false;
+      }
+    });
   },
 };
 </script>
