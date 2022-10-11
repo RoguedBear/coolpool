@@ -2,16 +2,19 @@
   <div class="border">
     <div>
       <ul class="menu-card-top-row">
-        <li>{{ type }}</li>
-        <li>qr_icon</li>
+        <li class="menu-header-text food-type">{{ type }}</li>
+        <li>
+          <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
+        </li>
+
         <li
           v-if="availed === false"
-          class="not-availed"
-          :class="{ expired: codeExpired }"
+          class="menu-header-text"
+          :class="{ 'not-availed': !codeExpired, expired: codeExpired }"
         >
           {{ code }}
         </li>
-        <li v-else class="availed">Availed</li>
+        <li v-else class="menu-header-text availed">Availed</li>
       </ul>
     </div>
     <div>
@@ -56,9 +59,15 @@ ul {
 ul > li {
   flex: 1 1 0;
 }
+
 .border {
-  border-radius: 4rem;
-  border-color: purple;
   border-width: 5vh;
+  border-color: purple;
+  width: 80%;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.3rem #bc13fe, 0 0 0.3rem #bc13fe, inset 0 0 0.3rem #bc13fe;
+  margin: 20px auto 20px auto;
 }
 </style>

@@ -1,4 +1,5 @@
 <template>
+  <h2>MESS CODES</h2>
   <div v-if="err">{{ err }}</div>
   <div v-if="!menuEmpty">
     <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">

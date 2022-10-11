@@ -1,3 +1,36 @@
 body {
   background-color: black;
 }
+
+.menu-header-text {
+  font-family: "Oxygen";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+}
+.availed {
+  color: #000000;
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #c20a0a;
+  letter-spacing: 0.03em;
+}
+
+.food-type {
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #9506ed;
+  color: #000000;
+}
+
+.not-availed {
+  -webkit-text-stroke-width: 1.3px;
+  text-shadow: 0 0 2rem #2bffa1, 0 0 0.8rem #2bffa1, 0 0 2.8rem #2bffa1,
+    0 0 1.3rem #2bffa1;
+}
+
+.expired {
+  -webkit-text-stroke-width: 0.9px;
+  text-shadow: 0 0 2rem #868383, 0 0 0.8rem #868383, 0 0 2.8rem #868383,
+    0 0 1.3rem #868383;
+  -webkit-text-stroke-color: #868383;
+}
