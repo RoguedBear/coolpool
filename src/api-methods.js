@@ -41,12 +41,21 @@ export async function fetchAPI(endpoint) {
     }
   }
 
+  response
+    .clone()
+    .json()
+    .then((e) => {
+      e.timestamp = Date.now();
+      localStorage.setItem("_mess_cache", JSON.stringify(e));
+    });
+
   return await response.json();
 }
 
 export async function login(username, password) {
   let email = isEmail(username)?.[0];
   let registrationId = email ? null : username;
+  // TODO: fetch this from localstorage input later
   let response = await fetch(
     `${process.env.VUE_APP_SCHEME}://${process.env.VUE_APP_API_URL}${process.env.VUE_APP_AUTH_ENDPOINT}`,
     {
