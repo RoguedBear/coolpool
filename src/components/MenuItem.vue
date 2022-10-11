@@ -3,7 +3,7 @@
     <div>
       <ul class="menu-card-top-row">
         <li>{{ type }}</li>
-        <li>qr_icon</li>
+        <img class="qr" style="max-width: 5%" src="qr.png" />
         <li
           v-if="availed === false"
           class="not-availed"
@@ -56,9 +56,15 @@ ul {
 ul > li {
   flex: 1 1 0;
 }
+
 .border {
-  border-radius: 4rem;
-  border-color: purple;
   border-width: 5vh;
+  border-color: purple;
+  width: 80%;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.3rem #bc13fe, 0 0 0.3rem #bc13fe, inset 0 0 0.3rem #bc13fe;
+  margin: 20px auto 20px auto;
 }
 </style>

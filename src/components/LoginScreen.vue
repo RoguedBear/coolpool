@@ -1,12 +1,11 @@
 <template>
-  <h2>Log in</h2>
-  <sub>
-    Logging in to
-    <code> {{ apiURL }} </code>
-  </sub>
-
   <h4 v-if="errMsg">{{ errMsg }}</h4>
   <form @submit.prevent="log(email, password)">
+    <h2>Log in</h2>
+    <sub>
+      Logging in to
+      <code> {{ apiURL }} </code>
+    </sub>
     <input
       type="text"
       name="uname"
@@ -22,7 +21,6 @@
       required
     />
     <button type="submit" class="registerbtn" name="submit">Log In</button>
-    <hr />
     <button disabled>Sign in with Microsoft (coming soon)</button>
 
     <span> uhm {{ data }} </span>
@@ -68,6 +66,69 @@ export default {
 
 <style>
 form {
-  display: grid;
+  position: relative;
+  z-index: 1;
+  max-width: 360px;
+  margin: 0 auto 50px;
+  padding: 45px;
+  text-align: center;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.8rem #bc13fe, 0 0 2.8rem #bc13fe, inset 0 0 1.3rem #bc13fe;
+}
+input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #000000;
+  color: white;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.3rem #bc13fe, 0 0 0.3rem #bc13fe, inset 0 0 0.3rem #bc13fe;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4d0868;
+  width: 100%;
+  border: 0.2rem solid #fff;
+  border-radius: 2rem;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #bc13fe,
+    0 0 0.3rem #bc13fe, 0 0 0.3rem #bc13fe, inset 0 0 0.3rem #bc13fe;
+  padding: 15px;
+  margin-bottom: 0.8rem;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+body {
+  background-color: #000000;
+}
+sub,
+span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+
+  color: #fff;
+}
+
+h2 {
+  color: #fff;
+  text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 2px #0fa,
+    0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
+
+  font-size: 2rem;
 }
 </style>
