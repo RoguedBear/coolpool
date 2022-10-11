@@ -42,10 +42,6 @@ export default {
     // Called when the user accepts the update
     refreshApp() {
       this.updateExists = false;
-      // Make sure we only send a 'skip waiting' message if the SW is waiting
-      if (!this.registration || !this.registration.waiting) return;
-      // send message to SW to skip the waiting and activate the new SW
-      this.registration.waiting.postMessage({ type: "SKIP_WAITING" });
       window.location.reload(true);
     },
   },
