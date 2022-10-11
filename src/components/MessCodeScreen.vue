@@ -75,7 +75,10 @@ export default {
       });
     },
     menuEmpty: function () {
-      return this.menu?.filter((item) => item.type === "messSchedule") == null;
+      return (
+        this.menu !== null &&
+        this.menu.filter((item) => item.type === "messSchedule") == null
+      );
     },
   },
 };
