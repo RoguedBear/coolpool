@@ -2,16 +2,19 @@
   <div class="border">
     <div>
       <ul class="menu-card-top-row">
-        <li>{{ type }}</li>
-        <img class="qr" style="max-width: 5%" src="qr.png" />
+        <li class="menu-header-text food-type">{{ type }}</li>
+        <li>
+          <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
+        </li>
+
         <li
           v-if="availed === false"
-          class="not-availed"
-          :class="{ expired: codeExpired }"
+          class="menu-header-text"
+          :class="{ 'not-availed': !codeExpired, expired: codeExpired }"
         >
           {{ code }}
         </li>
-        <li v-else class="availed">Availed</li>
+        <li v-else class="menu-header-text availed">Availed</li>
       </ul>
     </div>
     <div>
