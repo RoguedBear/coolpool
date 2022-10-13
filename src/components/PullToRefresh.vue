@@ -19,6 +19,7 @@ export default {
   },
   mounted() {
     document.addEventListener("touchmove", (e) => {
+      if (window.scrollY !== 0) return;
       this.isPulling = true;
       let delta = e.targetTouches[0].clientY - this.lastY;
       if (delta >= 3) {
@@ -31,7 +32,7 @@ export default {
       this.lastY = e.targetTouches[0].clientY;
     });
     document.addEventListener("touchend", () => {
-      if (this.timePulled > 55) {
+      if (this.timePulled > 20) {
         window.location.reload();
       }
       this.isPulling = false;

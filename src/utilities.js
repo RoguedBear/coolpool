@@ -13,3 +13,7 @@ export function parseJwt(token) {
 
   return JSON.parse(jsonPayload);
 }
+
+export function isFirefox() {
+  return navigator.userAgent.indexOf("Firefox") !== -1;
+}

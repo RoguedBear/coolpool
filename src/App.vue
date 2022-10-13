@@ -1,5 +1,5 @@
 <template>
-  <PullToRefresh />
+  <PullToRefresh v-if="isFF()" />
   <TitleCard />
   <div v-if="show_login">
     <LoginScreen />
@@ -21,6 +21,7 @@ import UpdateHandler from "@/components/UpdateHandler.vue";
 import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
 import TitleCard from "./components/TitleCard.vue";
 import PullToRefresh from "./components/PullToRefresh.vue";
+import { isFirefox } from "./utilities";
 
 export default {
   name: "App",
@@ -41,6 +42,9 @@ export default {
   methods: {
     logout() {
       issueLogout();
+    },
+    isFF() {
+      return isFirefox();
     },
   },
   mounted() {
