@@ -1,7 +1,9 @@
 // https://dev.to/drbragg/handling-service-worker-updates-in-your-vue-pwa-1pip
 <template>
   <div v-if="updateExists">
-    <footer @click="refreshApp">Update availabe, do you want to update?</footer>
+    <h3 @click="refreshApp" class="update-glow">
+      Update available, do you want to update?
+    </h3>
   </div>
 </template>
 <script>

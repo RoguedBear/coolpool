@@ -1,6 +1,7 @@
 <template>
   <PullToRefresh v-if="isFF()" />
   <TitleCard />
+  <UpdateHandler />
   <div v-if="show_login">
     <LoginScreen />
   </div>
@@ -11,7 +12,6 @@
   <h2>meh {{ LOGIN }}</h2>
 
   <span @click="logout()">LOGOUT</span>
-  <UpdateHandler />
 </template>
 
 <script>

@@ -38,3 +38,10 @@ body {
 ::placeholder {
   text-align: center;
 }
+
+.update-glow {
+  text-shadow: 0 0 2rem #ff45a7, 0 0 0.8rem #ff45a7, 0 0 2.8rem #ff45a7,
+    0 0 1.3rem #ff45a7;
+  border: bisque;
+  border-style: dotted;
+}
