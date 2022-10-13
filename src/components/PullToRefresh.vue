@@ -1,10 +1,10 @@
 <template>
   <img
-    v-if="isPulling"
+    v-if="isPulling && timePulled > 3"
     src="../assets/reload.svg"
     :style="{ width: imageScale + '%', rotate: rotateDeg + 'deg' }"
   />
-  <span v-if="isPulling">{{ timePulled }}</span>
+  <span v-if="timePulled > 3">{{ timePulled }}</span>
 </template>
 <script>
 export default {
@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    document.body.addEventListener("touchmove", (e) => {
+    document.addEventListener("touchmove", (e) => {
       this.isPulling = true;
       let delta = e.targetTouches[0].clientY - this.lastY;
       if (delta >= 3) {
@@ -30,7 +30,7 @@ export default {
       }
       this.lastY = e.targetTouches[0].clientY;
     });
-    document.body.addEventListener("touchend", () => {
+    document.addEventListener("touchend", () => {
       if (this.timePulled > 55) {
         window.location.reload();
       }
