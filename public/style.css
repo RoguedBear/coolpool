@@ -34,3 +34,7 @@ body {
     0 0 1.3rem #868383;
   -webkit-text-stroke-color: #868383;
 }
+
+::placeholder {
+  text-align: center;
+}
