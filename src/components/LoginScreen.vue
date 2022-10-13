@@ -1,11 +1,11 @@
 <template>
-  <h4 v-if="errMsg">{{ errMsg }}</h4>
   <form @submit.prevent="log(email, password)">
     <h2>Log in</h2>
     <sub>
       Logging in to
       <code> {{ apiURL }} </code>
     </sub>
+    <h4 v-if="errMsg">{{ errMsg }}</h4>
     <input
       type="text"
       name="uname"
@@ -20,7 +20,15 @@
       placeholder="Password"
       required
     />
-    <button type="submit" class="registerbtn" name="submit">Log In</button>
+    <button
+      type="submit"
+      class="registerbtn"
+      name="submit"
+      :disabled="isLoggingIn"
+    >
+      Log In
+      <img src="../assets/reload.svg" class="spin" v-show="isLoggingIn" />
+    </button>
     <button disabled>Sign in with Microsoft (coming soon)</button>
 
     <span> uhm {{ data }} </span>
@@ -40,22 +48,27 @@ export default {
       data: null,
       loggedIn: null,
       errMsg: null,
+      isLoggingIn: false,
     };
   },
   methods: {
     log(u, p) {
+      this.isLoggingIn = true;
       this.errMsg = null;
-      login(u, p).then((res) => {
-        console.log(res);
-        this.data = res;
-        if (res.res.message === "MISMATCH") {
-          this.errMsg = "The id and the password do not match";
-        } else if (res.res.message === "UNREG-REGISTRATION_ID") {
-          this.errMsg = "The id you have entered does not exist";
-        } else if (res.res.message === "SUCCESS") {
-          issueLogin(res.res.token);
-        }
-      });
+      login(u, p)
+        .then((res) => {
+          console.log(res);
+
+          this.data = res;
+          if (res.res.message === "MISMATCH") {
+            this.errMsg = "The id and the password do not match";
+          } else if (res.res.message === "UNREG-REGISTRATION_ID") {
+            this.errMsg = "The id you have entered does not exist";
+          } else if (res.res.message === "SUCCESS") {
+            issueLogin(res.res.token);
+          }
+        })
+        .then(() => (this.isLoggingIn = false));
     },
   },
   // mounted() {
@@ -130,5 +143,26 @@ h2 {
     0 0 82px #0fa, 0 0 92px #0fa, 0 0 102px #0fa, 0 0 151px #0fa;
 
   font-size: 2rem;
+}
+@keyframes spinner {
+  from {
+    rotate: 0deg;
+  }
+
+  to {
+    rotate: -360deg;
+  }
+}
+
+.spin {
+  animation-duration: 1.5s;
+  animation-timing-function: linear;
+  animation-name: spinner;
+  animation-iteration-count: infinite;
+}
+.registerbtn {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 </style>
