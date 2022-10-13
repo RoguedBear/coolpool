@@ -1,4 +1,5 @@
 <template>
+  <PullToRefresh />
   <TitleCard />
   <div v-if="show_login">
     <LoginScreen />
@@ -19,10 +20,17 @@ import MessCodeScreen from "@/components/MessCodeScreen.vue";
 import UpdateHandler from "@/components/UpdateHandler.vue";
 import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
 import TitleCard from "./components/TitleCard.vue";
+import PullToRefresh from "./components/PullToRefresh.vue";
 
 export default {
   name: "App",
-  components: { LoginScreen, MessCodeScreen, UpdateHandler, TitleCard },
+  components: {
+    LoginScreen,
+    MessCodeScreen,
+    UpdateHandler,
+    TitleCard,
+    PullToRefresh,
+  },
   data() {
     return {
       show_login: false,
@@ -62,7 +70,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #ffffff;
-  margin-top: 60px;
+  margin-top: 1vh;
 }
 @font-face {
   font-family: "Oxygen";
