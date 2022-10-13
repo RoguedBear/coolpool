@@ -60,9 +60,13 @@ export default {
         .catch((e) => {
           if (typeof e == "object") {
             // TODO: make a error message component
-            this.err =
-              "This wasnt supposed to happen, server returned " +
-              JSON.stringify(e);
+            if (e?.error) {
+              this.err =
+                "This wasnt supposed to happen, server returned " +
+                JSON.stringify(e);
+            } else {
+              this.err = "an error happend-> " + e;
+            }
           }
           console.error("emror" + e);
         });
