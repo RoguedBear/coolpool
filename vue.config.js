@@ -26,4 +26,7 @@ module.exports = defineConfig({
           },
         }
       : {},
+  pwa: {
+    themeColor: "#000000",
+  },
 });
