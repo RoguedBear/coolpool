@@ -116,7 +116,7 @@ body {
 }
 sub,
 span {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   padding-bottom: 15px;
