@@ -4,6 +4,7 @@
     src="../assets/reload.svg"
     :style="{ width: imageScale + '%', rotate: rotateDeg + 'deg' }"
   />
+  <span v-if="isPulling">{{ timePulled }}</span>
 </template>
 <script>
 export default {
@@ -19,8 +20,12 @@ export default {
   mounted() {
     document.body.addEventListener("touchmove", (e) => {
       this.isPulling = true;
-      if (e.targetTouches[0].clientY - this.lastY >= 3) {
+      let delta = e.targetTouches[0].clientY - this.lastY;
+      if (delta >= 3) {
         this.timePulled += 1;
+        console.log(this.timePulled);
+      } else if (delta < -1) {
+        this.timePulled -= 1;
         console.log(this.timePulled);
       }
       this.lastY = e.targetTouches[0].clientY;
