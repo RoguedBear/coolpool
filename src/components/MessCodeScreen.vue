@@ -1,7 +1,7 @@
 <template>
   <h2>MESS CODES</h2>
   <div v-if="err">{{ err }}</div>
-  <div v-if="!menuEmpty">
+  <div v-if="!menuEmpty && this.menu !== null">
     <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">
       <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
     </div>
@@ -81,10 +81,9 @@ export default {
     },
     menuEmpty: function () {
       // console.log("AAAAA" + this.menu);
-      let out = !(
+      let out =
         this.menu !== null &&
-        this.menu.filter((item) => item.type === "messSchedule") != null
-      );
+        this.menu.filter((item) => item.type === "messSchedule") != null;
       // console.log("AAAAA   " + out);
       return out;
     },
