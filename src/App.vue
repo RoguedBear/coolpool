@@ -1,4 +1,5 @@
 <template>
+  <TitleCard />
   <div v-if="show_login">
     <LoginScreen />
   </div>
@@ -17,10 +18,11 @@ import LoginScreen from "./components/LoginScreen.vue";
 import MessCodeScreen from "@/components/MessCodeScreen.vue";
 import UpdateHandler from "@/components/UpdateHandler.vue";
 import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
+import TitleCard from "./components/TitleCard.vue";
 
 export default {
   name: "App",
-  components: { LoginScreen, MessCodeScreen, UpdateHandler },
+  components: { LoginScreen, MessCodeScreen, UpdateHandler, TitleCard },
   data() {
     return {
       show_login: false,
