@@ -4,7 +4,6 @@ process.env.VUE_APP_API_URL =
   process.env.USE_PROXY == "true"
     ? process.env.VUE_APP_API_URL_FOR_PROXY
     : process.env.VUE_APP_API_URL;
-process.env.VUE_APP_USING_PROXY = process.env.USE_PROXY == "true";
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -28,5 +27,11 @@ module.exports = defineConfig({
       : {},
   pwa: {
     themeColor: "#000000",
+  },
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
+      args[0].description = process.env.META_DESC;
+      return args;
+    });
   },
 });
