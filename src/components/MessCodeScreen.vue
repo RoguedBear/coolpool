@@ -6,7 +6,7 @@
       <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
     </div>
   </div>
-  <div v-else-if="menuEmpty">
+  <div v-else-if="menuEmpty && menu !== null">
     Menu doesn't seem to contain anything right now :/
   </div>
   <div v-else><h2>Loading...</h2></div>
@@ -76,10 +76,13 @@ export default {
       });
     },
     menuEmpty: function () {
-      return (
+      // console.log("AAAAA" + this.menu);
+      let out = !(
         this.menu !== null &&
-        this.menu.filter((item) => item.type === "messSchedule") == null
+        this.menu.filter((item) => item.type === "messSchedule") != null
       );
+      // console.log("AAAAA   " + out);
+      return out;
     },
   },
 };
