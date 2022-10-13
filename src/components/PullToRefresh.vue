@@ -4,7 +4,6 @@
     src="../assets/reload.svg"
     :style="{ width: imageScale + '%', rotate: rotateDeg + 'deg' }"
   />
-  <span v-if="timePulled > 3">{{ timePulled }}</span>
 </template>
 <script>
 export default {
