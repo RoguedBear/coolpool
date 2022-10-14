@@ -80,11 +80,11 @@ export default {
       });
     },
     menuEmpty: function () {
-      // console.log("AAAAA" + this.menu);
+      console.log("AAAAA" + this.menu);
       let out =
         this.menu !== null &&
-        this.menu.filter((item) => item.type === "messSchedule") != null;
-      // console.log("AAAAA   " + out);
+        this.menu.filter((item) => item.type === "messSchedule") == null;
+      console.log("AAAAA   " + out);
       return out;
     },
   },
