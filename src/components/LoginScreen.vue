@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       apiURL: process.env.VUE_APP_API_URL,
-      proxy: process.env.VUE_APP_USING_PROXY,
       email: "",
       password: "",
       data: null,
