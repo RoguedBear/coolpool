@@ -1,6 +1,6 @@
 # Cool Pool ![](./public/img/icons/favicon-32x32.png)
 
-> An alternative, simplistic, to-the-point front end to the application my
+> An alternative, simplistic, to-the-point front end to the ERP application my
 > university uses to display mess/food coupon codes
 
 ## Features
@@ -8,6 +8,12 @@
 - Dark Mode ( OLED friendly :) )
 - Simplistic, 1 tap access to mess codes
 - Cyberpunk-ish neon glow (thanks @codeSpicer for the css 🙃)
+- [ ] (coming soon, help wanted) generating qr codes
+
+## Screenshots
+
+- ### Mess code screen
+  ![image](https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png)
 
 ## For running/developing locally
 
