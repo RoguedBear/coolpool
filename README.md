@@ -10,10 +10,24 @@
 - Cyberpunk-ish neon glow (thanks @codeSpicer for the css 🙃)
 - _(coming soon, help wanted)_ generating qr codes
 
+**NOTE:** CoolPool is still in **alpha** stage!!! \
+expect some features to be in-progress and some UI components to change! checkout
+[Issues](https://github.com/RoguedBear/coolpool/issues) tab for more info
+
 ## Screenshots
 
 - ### Mess code screen
-  ![image](https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png)
+  <!-- ![image](https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png?width=50) -->
+  <img src="https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png" width="50%" />
+
+## How to use?
+
+- visit the site \
+  (optionally install the app as a PWA from the browser)
+- login with your enrollment number and password (not the microsoft account
+  password)
+- 💲💲💲 🤑 profit\
+  enjoy 1 tap access to mess codes with OLED friendly dark mode
 
 ## For running/developing locally
 
