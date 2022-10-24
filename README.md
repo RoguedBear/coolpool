@@ -8,7 +8,7 @@
 - Dark Mode ( OLED friendly :) )
 - Simplistic, 1 tap access to mess codes
 - Cyberpunk-ish neon glow (thanks @codeSpicer for the css 🙃)
-- [ ] (coming soon, help wanted) generating qr codes
+- _(coming soon, help wanted)_ generating qr codes
 
 ## Screenshots
 
