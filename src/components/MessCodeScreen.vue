@@ -3,7 +3,12 @@
   <div v-if="err">{{ err }}</div>
   <div v-if="!menuEmpty && this.menu !== null">
     <div v-for="menuEntry in sortedMenuByTime" :key="menuEntry">
-      <MenuItem :jsonMenu="JSON.parse(menuEntry.body)" />
+      <MenuItem
+        :jsonMenu="JSON.parse(menuEntry.body)"
+        :time="`${menuEntry.startTime.slice(10, -3)} 
+        -
+         ${menuEntry.endTime.slice(10, -3)}`"
+      />
     </div>
   </div>
   <div v-else-if="menuEmpty && menu !== null">

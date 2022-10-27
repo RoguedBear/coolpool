@@ -3,6 +3,7 @@
     <div>
       <ul class="menu-card-top-row">
         <li class="menu-header-text food-type">{{ type }}</li>
+        <li>{{ time }}</li>
         <li>
           <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
         </li>
@@ -25,7 +26,10 @@
 <script>
 export default {
   name: "MenuItem",
-  props: ["jsonMenu"],
+  props: {
+    jsonMenu: Object,
+    time: String,
+  },
 
   computed: {
     availed() {
@@ -50,8 +54,11 @@ export default {
 <style>
 .menu-card-top-row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0%;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
 }
 ul {
   list-style: none;
