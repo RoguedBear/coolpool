@@ -16,6 +16,11 @@
         </li>
         <li v-else class="menu-header-text availed">Availed</li>
       </ul>
+      <ul class="menu-card-second-row">
+        <li>{{ time }}</li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
     <div>
       <span>{{ menuItems }}</span>
@@ -25,7 +30,10 @@
 <script>
 export default {
   name: "MenuItem",
-  props: ["jsonMenu"],
+  props: {
+    jsonMenu: Object,
+    time: String,
+  },
 
   computed: {
     availed() {
@@ -52,6 +60,15 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0%;
+  margin-bottom: 0;
+}
+.menu-card-second-row {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  font-size: smaller;
+  padding: 0;
+  margin: 0 0 6px;
 }
 ul {
   list-style: none;
