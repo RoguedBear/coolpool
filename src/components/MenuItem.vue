@@ -3,7 +3,6 @@
     <div>
       <ul class="menu-card-top-row">
         <li class="menu-header-text food-type">{{ type }}</li>
-        <li>{{ time }}</li>
         <li>
           <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
         </li>
@@ -16,6 +15,11 @@
           {{ code }}
         </li>
         <li v-else class="menu-header-text availed">Availed</li>
+      </ul>
+      <ul class="menu-card-second-row">
+        <li>{{ time }}</li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
     <div>
@@ -54,11 +58,17 @@ export default {
 <style>
 .menu-card-top-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding-inline: 1rem;
+  padding: 0%;
+  margin-bottom: 0;
+}
+.menu-card-second-row {
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  font-size: smaller;
+  padding: 0;
+  margin: 0 0 6px;
 }
 ul {
   list-style: none;
