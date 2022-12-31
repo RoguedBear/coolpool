@@ -18,7 +18,7 @@
   <footer v-if="!menuEmpty">
     Using cache: {{ usingCache }}
     <span v-if="usingCache"
-      >from {{ Date(cacheTimestamp).toLocaleString().split("GMT")[0] }}</span
+      >from {{ new Date(cacheTimestamp).toString().split("GMT")[0] }}</span
     >
   </footer>
 </template>
