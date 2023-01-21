@@ -4,7 +4,12 @@
       <ul class="menu-card-top-row">
         <li class="menu-header-text food-type">{{ type }}</li>
         <li>
-          <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
+          <img
+            class="qr"
+            style="max-width: 40%"
+            src="../assets/qr.svg"
+            @click="showQR = true"
+          />
         </li>
 
         <li
@@ -26,15 +31,22 @@
       <span>{{ menuItems }}</span>
     </div>
   </div>
+  <QROverlay v-if="showQR" @toggleQR="showQR = false" :title="type" />
 </template>
 <script>
+import QROverlay from "./QROverlay.vue";
+
 export default {
   name: "MenuItem",
+  data() {
+    return {
+      showQR: false,
+    };
+  },
   props: {
     jsonMenu: Object,
     time: String,
   },
-
   computed: {
     availed() {
       return this.jsonMenu.codeUsed;
@@ -52,6 +64,7 @@ export default {
       return JSON.parse(this.jsonMenu.foodItems)[0].name;
     },
   },
+  components: { QROverlay },
 };
 </script>
 
