@@ -17,3 +17,7 @@ export function parseJwt(token) {
 export function isFirefox() {
   return navigator.userAgent.indexOf("Firefox") !== -1;
 }
+
+export function reload() {
+  location.reload();
+}

@@ -9,7 +9,7 @@
     <MessCodeScreen />
   </div>
 
-  <h2>meh {{ LOGIN }}</h2>
+  <h2 @click="reload()" :style="{ cursor: 'pointer' }">Refresh</h2>
 
   <span @click="logout()">LOGOUT</span>
 </template>
@@ -21,7 +21,7 @@ import UpdateHandler from "@/components/UpdateHandler.vue";
 import { isLoggedIn, issueLogout, subscribeToLoggedIn } from "@/props";
 import TitleCard from "./components/TitleCard.vue";
 import PullToRefresh from "./components/PullToRefresh.vue";
-import { isFirefox } from "./utilities";
+import { isFirefox, reload } from "./utilities";
 
 export default {
   name: "App",
@@ -43,9 +43,11 @@ export default {
     logout() {
       issueLogout();
     },
+    // TODO: refactor this
     isFF() {
       return isFirefox();
     },
+    reload,
   },
   mounted() {
     if (isLoggedIn()) {
