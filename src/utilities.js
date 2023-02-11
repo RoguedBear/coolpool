@@ -39,3 +39,13 @@ export let QRFormat = {
   },
   version: 2,
 };
+function encryptString(plain) {
+  const CryptoJS = require("crypto-js");
+
+  const key = CryptoJS.enc.Base64.parse(process.env.VUE_APP_ENC_KEY);
+  const iv = CryptoJS.enc.Base64.parse(process.env.VUE_APP_IV);
+
+  var encrypted = CryptoJS.AES.encrypt(plain, key, { iv: iv });
+
+  return encrypted.toString();
+}
