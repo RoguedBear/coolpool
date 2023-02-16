@@ -1,5 +1,5 @@
 <template>
-  <div class="border">
+  <div class="border" @click="showQR = true">
     <div>
       <ul class="menu-card-top-row">
         <li class="menu-header-text food-type">{{ type }}</li>
@@ -7,8 +7,10 @@
           <img
             class="qr"
             style="max-width: 40%"
+            :style="{
+              filter: 'grayscale(' + (availed || codeExpired ? 80 : 0) + '%)',
+            }"
             src="../assets/qr.svg"
-            @click="showQR = true"
           />
         </li>
 
@@ -34,13 +36,21 @@
   <OverlayComponent :showQR="showQR" @toggleQR="showQR = false" :title="type">
     <qrcode-vue
       :value="qrCodeString"
-      size="250"
+      size="300"
       background="#000000"
       foreground="#ffffff"
       renderAs="svg"
       level="M"
     />
-    <p class="menu-header-text not-availed">{{ code }}</p>
+    <p
+      class="menu-header-text"
+      :class="{
+        availed: availed || codeExpired,
+        'not-availed': !(availed || codeExpired),
+      }"
+    >
+      {{ code }}
+    </p>
   </OverlayComponent>
 </template>
 <script>
