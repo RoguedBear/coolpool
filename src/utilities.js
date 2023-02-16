@@ -1,3 +1,6 @@
+import Base64 from "crypto-js/enc-base64";
+import { AES } from "crypto-js";
+
 export function parseJwt(token) {
   var base64Url = token.split(".")[1];
   var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
@@ -39,3 +42,12 @@ export let QRFormat = {
   },
   version: 2,
 };
+
+export function encryptString(plain) {
+  const key = Base64.parse(process.env.VUE_APP_ENC_KEY);
+  const iv = Base64.parse(process.env.VUE_APP_IV);
+
+  var encrypted = AES.encrypt(plain, key, { iv: iv });
+
+  return encrypted.toString();
+}

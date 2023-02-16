@@ -46,7 +46,7 @@
 <script>
 import QrcodeVue from "qrcode.vue";
 import OverlayComponent from "./OverlayComponent.vue";
-import { QRFormat } from "../utilities.js";
+import { QRFormat, encryptString } from "../utilities.js";
 
 export default {
   name: "MenuItem",
@@ -78,9 +78,10 @@ export default {
     qrCodeString() {
       QRFormat.current_millis = Date.now();
       QRFormat.module.details.coupon_code = this.code;
-      return JSON.stringify(QRFormat);
+      return encryptString(JSON.stringify(QRFormat));
     },
   },
+  methods: { encryptString },
   components: { OverlayComponent, QrcodeVue },
 };
 </script>
