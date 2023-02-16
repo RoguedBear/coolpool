@@ -15,7 +15,7 @@
     Menu doesn't seem to contain anything right now :/
   </div>
   <div v-else><h2>Loading...</h2></div>
-  <footer v-if="!menuEmpty">
+  <footer>
     Using cache: {{ usingCache }}
     <span v-if="usingCache"
       >from {{ new Date(cacheTimestamp).toString().split("GMT")[0] }}</span
@@ -85,10 +85,11 @@ export default {
       });
     },
     menuEmpty: function () {
-      console.log("AAAAA" + this.menu);
+      console.log("AAAAA" + JSON.stringify(this.menu));
+      console.log(this.menu?.filter((item) => item.type === "messSchedule"));
       let out =
         this.menu !== null &&
-        this.menu.filter((item) => item.type === "messSchedule") == null;
+        this.menu.filter((item) => item.type === "messSchedule").length === 0;
       console.log("AAAAA   " + out);
       return out;
     },
