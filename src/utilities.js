@@ -39,7 +39,8 @@ export let QRFormat = {
   },
   version: 2,
 };
-function encryptString(plain) {
+
+export function encryptString(plain) {
   const CryptoJS = require("crypto-js");
 
   const key = CryptoJS.enc.Base64.parse(process.env.VUE_APP_ENC_KEY);
