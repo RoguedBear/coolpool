@@ -33,14 +33,23 @@
       <span>{{ menuItems }}</span>
     </div>
   </div>
-  <OverlayComponent :showQR="showQR" @toggleQR="showQR = false" :title="type">
+  <OverlayComponent
+    :showQR="showQR"
+    @toggleQR="
+      showQR = false;
+      engageStealth = false;
+    "
+    :title="type"
+    :engageStealth="engageStealth"
+  >
     <qrcode-vue
       :value="qrCodeString"
-      size="300"
-      background="#000000"
-      foreground="#ffffff"
+      size="280"
+      :background="engageStealth ? '#ffffff' : '#000000'"
+      :foreground="engageStealth ? '#000000' : '#ffffff'"
       renderAs="svg"
       level="M"
+      :margin="engageStealth ? 10 : 0"
     />
     <p
       class="menu-header-text"
@@ -48,9 +57,17 @@
         availed: availed || codeExpired,
         'not-availed': !(availed || codeExpired),
       }"
+      v-show="!engageStealth"
     >
       {{ code }}
     </p>
+    <button
+      @click.stop="engageStealth = true"
+      style="width: auto"
+      v-show="!engageStealth"
+    >
+      engage stealth?
+    </button>
   </OverlayComponent>
 </template>
 <script>
@@ -63,6 +80,7 @@ export default {
   data() {
     return {
       showQR: false,
+      engageStealth: false,
     };
   },
   props: {
