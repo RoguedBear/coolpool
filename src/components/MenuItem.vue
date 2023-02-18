@@ -66,7 +66,7 @@
       style="width: auto"
       v-show="!engageStealth"
     >
-      engage stealth?
+      engage stealth? ඞ
     </button>
   </OverlayComponent>
 </template>
