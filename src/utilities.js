@@ -21,6 +21,10 @@ export function isFirefox() {
   return navigator.userAgent.indexOf("Firefox") !== -1;
 }
 
+export function reload() {
+  location.reload();
+}
+
 export let QRFormat = {
   current_millis: Date.now(),
   // device: { app_version: "1.92", name: "SM-A315F", os_version: "31" },
