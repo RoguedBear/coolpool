@@ -1,10 +1,17 @@
 <template>
-  <div class="border">
+  <div class="border" @click="showQR = true">
     <div>
       <ul class="menu-card-top-row">
         <li class="menu-header-text food-type">{{ type }}</li>
         <li>
-          <img class="qr" style="max-width: 40%" src="../assets/qr.svg" />
+          <img
+            class="qr"
+            style="max-width: 40%"
+            :style="{
+              filter: 'grayscale(' + (availed || codeExpired ? 80 : 0) + '%)',
+            }"
+            src="../assets/qr.svg"
+          />
         </li>
 
         <li
@@ -26,15 +33,60 @@
       <span>{{ menuItems }}</span>
     </div>
   </div>
+  <OverlayComponent
+    :showQR="showQR"
+    @toggleQR="
+      showQR = false;
+      engageStealth = false;
+    "
+    :title="type"
+    :engageStealth="engageStealth"
+  >
+    <qrcode-vue
+      :value="qrCodeString"
+      size="280"
+      :background="engageStealth ? '#ffffff' : '#000000'"
+      :foreground="engageStealth ? '#000000' : '#ffffff'"
+      renderAs="svg"
+      level="M"
+      :margin="engageStealth ? 10 : 0"
+    />
+    <p
+      class="menu-header-text"
+      :class="{
+        availed: availed || codeExpired,
+        'not-availed': !(availed || codeExpired),
+      }"
+      v-show="!engageStealth"
+    >
+      {{ code }}
+    </p>
+    <button
+      @click.stop="engageStealth = true"
+      style="width: auto"
+      v-show="!engageStealth"
+    >
+      engage stealth? ඞ
+    </button>
+  </OverlayComponent>
 </template>
 <script>
+import QrcodeVue from "qrcode.vue";
+import OverlayComponent from "./OverlayComponent.vue";
+import { QRFormat, encryptString } from "../utilities.js";
+
 export default {
   name: "MenuItem",
+  data() {
+    return {
+      showQR: false,
+      engageStealth: false,
+    };
+  },
   props: {
     jsonMenu: Object,
     time: String,
   },
-
   computed: {
     availed() {
       return this.jsonMenu.codeUsed;
@@ -51,7 +103,14 @@ export default {
     menuItems() {
       return JSON.parse(this.jsonMenu.foodItems)[0].name;
     },
+    qrCodeString() {
+      QRFormat.current_millis = Date.now();
+      QRFormat.module.details.coupon_code = this.code;
+      return encryptString(JSON.stringify(QRFormat));
+    },
   },
+  methods: { encryptString },
+  components: { OverlayComponent, QrcodeVue },
 };
 </script>
 
