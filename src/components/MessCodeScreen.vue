@@ -85,8 +85,8 @@ export default {
       });
     },
     menuEmpty: function () {
-      console.log("AAAAA" + JSON.stringify(this.menu));
-      console.log(this.menu?.filter((item) => item.type === "messSchedule"));
+      // console.log("AAAAA" + JSON.stringify(this.menu));
+      // console.log(this.menu?.filter((item) => item.type === "messSchedule"));
       let out =
         this.menu !== null &&
         this.menu.filter((item) => item.type === "messSchedule").length === 0;
