@@ -2,11 +2,12 @@
 <template>
   <div v-if="updateExists">
     <h3 @click="refreshApp" class="update-glow">
-      Update available, do you want to update?
+      {{ currentlyShowingText }}
     </h3>
   </div>
 </template>
 <script>
+import { isFirefox } from "../utilities.js";
 export default {
   data() {
     return {
@@ -14,10 +15,16 @@ export default {
       refreshing: false,
       registration: null,
       updateExists: false,
+      // texts
+      updateNotifyText: "Update available, do you want to update?",
+      pleaseReopenOnChrome:
+        "Update installed! Please reopen CoolPool to apply the update",
+      currentlyShowingText: null,
     };
   },
 
   created() {
+    this.currentlyShowingText = this.updateNotifyText;
     // Listen for our custom event from the SW registration
     document.addEventListener("swUpdated", this.updateAvailable, {
       once: true,
@@ -38,14 +45,20 @@ export default {
     // To alert the user there is an update they need to refresh for
     updateAvailable(event) {
       this.registration = event.detail;
+      console.log("hello");
       this.updateExists = true;
     },
 
     // Called when the user accepts the update
     refreshApp() {
-      this.updateExists = false;
-      window.location.reload(true);
+      if (this.isFirefox()) {
+        this.updateExists = false;
+        window.location.reload(true);
+      } else {
+        this.currentlyShowingText = this.pleaseReopenOnChrome;
+      }
     },
+    isFirefox,
   },
 };
 </script>
