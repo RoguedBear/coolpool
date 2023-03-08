@@ -1,6 +1,6 @@
 {
   "name": "cool-pool",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "crypto-js": "^4.1.1",
+    "qrcode.vue": "^3.3.3",
     "register-service-worker": "^1.7.2",
     "vue": "^3.2.13"
   },

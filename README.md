@@ -5,20 +5,26 @@
 
 ## Features
 
-- Dark Mode ( OLED friendly :) )
-- Simplistic, 1 tap access to mess codes
-- Cyberpunk-ish neon glow (thanks @codeSpicer for the css 🙃)
-- _(coming soon, help wanted)_ generating qr codes
-
-**NOTE:** CoolPool is still in **alpha** stage!!! \
-expect some features to be in-progress and some UI components to change! checkout
-[Issues](https://github.com/RoguedBear/coolpool/issues) tab for more info
+- Generating qr codes 👾
+- Dark Mode ( OLED friendly :) ) 🌚
+- Simplistic, 1 tap access to mess codes ⚡
+- Stealth mode to blend in with normal users ඞ
+- Cyberpunk-ish neon glow 👨‍🎤 (thanks @codeSpicer for the css 🙃)
 
 ## Screenshots
 
 - ### Mess code screen
+
   <!-- ![image](https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png?width=50) -->
-  <img src="https://user-images.githubusercontent.com/39442192/197512586-a493bb64-5551-4c74-9d26-7e1a667203a0.png" width="50%" />
+  <img src="https://user-images.githubusercontent.com/39442192/223687807-1685c2b5-db69-4b28-92c0-0bc1e10aaa10.png" width="50%" />
+
+- ### QR code screen
+
+  <img src="https://user-images.githubusercontent.com/39442192/223688764-66a85bb8-d895-413a-ba90-5cca9a52ad04.png" width="55%" />
+
+- ### Stealth Mode
+  👀ඞ🤫ඞ👀 \
+  only one way to find out 👀
 
 ## How to use?
 
@@ -31,8 +37,9 @@ expect some features to be in-progress and some UI components to change! checkou
 
 ## For running/developing locally
 
-- You would need the following templated environment variable file
-  `.env.development.local` and then tweak it according to your specific instanc.
+- You would need the `.env.development.local` file (contact me for that). \
+
+  Following is an old template that should get you going:
 
   ```env
   NODE_ENV=development

@@ -15,6 +15,7 @@ export async function fetchAPI(endpoint) {
     credentials: "omit",
     headers: {
       "User-Agent":
+        process.env.VUE_APP_USER_AGENT ||
         "Mozilla/5.0 (Windows NT 10.0; rv:103.0) Gecko/20100101 Firefox/103.0",
       Accept:
         "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -61,6 +62,7 @@ export async function login(username, password) {
     {
       headers: {
         "User-Agent":
+          process.env.VUE_APP_USER_AGENT ||
           "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36",
         Accept: "application/json",
         "Accept-Language": "en-US,en;q=0.9",
@@ -89,7 +91,7 @@ export async function login(username, password) {
         ip: "118.185.21.138",
         operatingSystem: "Windows",
         deviceId: String(Math.floor(9e8 + Math.random() * 1e8)),
-        deviceType: "BROWSER",
+        deviceType: "APP",
         rememberMe: false,
         loginTime: "2022-08-30 11:10:41",
       }),
