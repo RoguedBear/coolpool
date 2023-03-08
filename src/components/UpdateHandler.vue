@@ -18,7 +18,7 @@ export default {
       // texts
       updateNotifyText: "Update available, do you want to update?",
       pleaseReopenOnChrome:
-        "Update installed! Please reopen Cool-Pool to apply the update",
+        "Update installed! Please reopen CoolPool to apply the update",
       currentlyShowingText: null,
     };
   },
